@@ -1,0 +1,160 @@
+span .menuActive{
+    padding: 4px;
+    border-radius: 3px;
+    margin-left: -18px;
+    letter-spacing: 1px;
+}
+span .subMenuActive{
+  padding: 4px;
+  border-radius: 3px;
+  margin-left: -18px;
+  letter-spacing: 1px;
+}
+.card-header{
+  cursor: pointer;
+}
+.card-header .title {
+  font-size: 17px;
+  color: #000;
+}
+.card{
+  border: 1px solid #ddd;
+}
+.card-header:not(.collapsed) .rotate-icon {
+  transform: rotate(180deg);
+}
+.fa-angle-down{
+  position: absolute;
+  right: 20px;
+}
+.menuCollapsed{
+  cursor: pointer;
+  border-bottom: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  padding-left: 40px;
+  height: 40px;
+}
+#width  td {
+    width: 105px;
+    border-top: none;
+    cursor: pointer;
+}
+ h6.title.ml{
+   padding-left: 30px;
+ }
+.permission-card-body {
+  padding: 3px 0px;
+}
+button.btn.btn-hover-shine.btn-danger {
+    font-size: 13px;
+    margin-bottom: 2px;
+}
+a.btn.btn-hover-shine.btn-primary {
+  font-size: 13px;
+  margin-bottom: 2px;
+}
+button.mr-2.btn.btn-pill.btn-hover-shine.btn-primary {
+    font-size: 13px;
+}
+button.btn.btn-hover-shine.btn-success {
+  font-size: 13px;
+}
+i.fa.fa-edit {
+      margin-right: 5px;
+}
+i.fa.fa-trash {
+    margin-right: 5px;
+}
+.text-sm-right{
+   padding-top:30px;
+ }
+.form-check-input{
+  margin-left:0px;
+}
+label.form-check-label{
+  margin-left: 20px;
+}
+::placeholder{
+  font-size:14px;
+}
+select.form-control {
+  font-size: 14px;
+}
+span.card_footer {
+    padding: 10px 0px 0px 10px;
+}
+.shopemployee-entry {
+    padding: 70px 0px;
+}
+.shopemployee-border {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    padding: 40px;
+}
+.title-name{
+  font-size:15px;
+  padding:10px 0;
+  padding-right:10px;
+}
+.card-header-part{
+   padding:7px 0px ;
+}
+.card-header-part h6{
+   color:black;
+   margin-bottom:0px;
+   text-align: center;
+}
+.btn-padding{
+   padding: 4px 11px;
+}
+.p{
+   padding: 0px 25px 11px 0px;
+}
+.table-responsive-custom{
+    display: block;
+    width: 100%;
+}
+.brand-border{
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    padding:55px 30px;
+}
+.brand-entry{
+    padding:50px 0px;
+}
+.text-sm-right{
+    padding-top:30px;
+}
+.brand-entry label{
+    margin-right:40px;
+    font-size:17px;
+}
+.category-border{
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  padding:55px 30px;
+}
+.category label {
+    margin-top: 7px;
+}
+.category .form-row {
+    margin-top: 10px;
+}
+.category input.form-check-input {
+    margin-top: 13px;
+}
+a.btn-success {
+    text-decoration: none;
+    padding: 4px 10px;
+    border-radius: 15px;
+}
+.display-inline-css a{
+  display: inline-block;
+  margin-bottom: 8px;
+}
+@media (max-width:767px) {
+    .category-border {
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      padding: 10px 30px;
+  }
+}
