@@ -49,43 +49,67 @@ Route::resource('/adminHolidayType','AdminHolidayTypeController');
 Route::resource('/adminHolidaySetup','AdminHolidaySetupController');
 Route::resource('/commissionTypeEntry','CommissionTypeEntryController');
 Route::resource('/productBrandEntry','ProductBrandEntryController');
-
-
-
 Route::resource('/adminLicenceType','AdminlicenceTypeController');
 Route::resource('/jobDepartmentEntry','JobDepartmentEntryController');
 Route::resource('/adminMetaKeyDescription','AdminMetaKeyDescriptionController');
-////////////////  Admin Shop Information Route    //////////////////
+Route::resource('/adminPurchaseType','AdminPurchaseTypeController');
+
+////////////////  Admin Shop Login Route    //////////////////
 Route::get('/shop/login','AdminShopInformationController@shoplogin');
 Route::resource('/adminshopInformation','AdminShopInformationController');
-/////////////////     Category Route        //////////////////
+
+/////////////////     Inventory Route        //////////////////
+// Category
 Route::resource('/category','CategoryController');
-Route::get('/categorySelect','CategoryController@categorySelect');
-Route::get('/categoryIdCatch/{categoryId}','CategoryController@categoryIdCatch');
-Route::get('/categoryPositions','CategoryController@categoryPositions');
-
-
-
+Route::get('/cateorySelectList','CategoryController@cateorySelectList');
+Route::get('/categoryId/{categoryId}','CategoryController@categoryId');
+Route::get('/subCategoryId/{subCategoryId}','CategoryController@subCategoryId');
+Route::get('/thirdCategoryId/{thirdCategoryId}','CategoryController@thirdCategoryId');
+Route::get('/fourCategoryId/{fourCategoryId}','CategoryController@fourCategoryId');
+Route::get('/fiveCategoryId/{fiveCategoryId}','CategoryController@fiveCategoryId');
+Route::get('/sixCategoryId/{sixCategoryId}','CategoryController@sixCategoryId');
+Route::get('/sevenCategoryId/{sevenCategory}','CategoryController@sevenCategoryId');
 Route::get('/adminShopTypeIdSelect/{shopTypeId}','CategoryController@adminShopTypeIdSelect');
+// Product
+Route::resource('/productName','ProductNameController');
+Route::get('/productCateorySelectList','ProductNameController@productCateorySelectList');
+Route::get('/productCategoryId/{categoryId}','ProductNameController@productCategoryId');
+Route::get('/productSubCategoryId/{subCategoryId}','ProductNameController@productSubCategoryId');
+Route::get('/productThirdCategoryId/{thirdCategoryId}','ProductNameController@productThirdCategoryId');
+Route::get('/productFourCategoryId/{fourCategoryId}','ProductNameController@productFourCategoryId');
+Route::get('/productFiveCategoryId/{fiveCategoryId}','ProductNameController@productFiveCategoryId');
+Route::get('/productSixCategoryId/{sixCategoryId}','ProductNameController@productSixCategoryId');
+
+// InventoryReport
+Route::get('/inventoryProductNameWithoutPrice','InventoryReportController@inventoryProductNameWithoutPrice');
+Route::get('/inventoryProductNameWithPrice','InventoryReportController@inventoryProductNameWithPrice');
+Route::get('/invetoryCategoryWithoutPriceList','InventoryReportController@invetoryCategoryWithoutPriceList');
+Route::get('/invetoryCategoryWithPriceList','InventoryReportController@invetoryCategoryWithPriceList');
+Route::get('/lowQuantityProductList','InventoryReportController@lowQuantityProductList');
+Route::get('/expireDateOverProductList','InventoryReportController@expireDateOverProductList');
+Route::get('/expireDateSoonProductList','InventoryReportController@expireDateSoonProductList');
 
 
 /////////////////      Purchase Route        //////////////////
-//  Purchase Brand
+//  Brand
 Route::resource('/brandEntry','BrandEntryController');
-
-
-/////////////////     Setting Route         //////////////////
-//change Password
-Route::resource('/changePassword','PasswordChangeController');
-//profile setting
-Route::resource('/settingsProfile','SettingsController');
+//  Purchase
+Route::resource('/purchaseInvoice','PurchaseController');
+Route::get('/shopWishProductSupplier','PurchaseController@shopWishProductSupplier');
+Route::get('/shopWishProductSupplierId/{ProductSupplierId}','PurchaseController@shopWishProductSupplierId');
+Route::get('/purchaseInvoiceShow','PurchaseController@purchaseInvoiceShow');
+Route::get('/purchaseTypeShow','PurchaseController@purchaseTypeShow');
+Route::get('/unitNameShow','PurchaseController@unitNameShow');
+Route::get('/productNameShow','PurchaseController@productNameShow');
+Route::post('/productEntry','PurchaseController@productEntry');
+Route::get('/productList','PurchaseController@productList');
+Route::get('/totalPurchaseValue/{purchaseInvoiceNo}','PurchaseController@totalPurchaseValue');
 
 
 /////////////////        Shop User Route         //////////////////
 // ShopUser Menu Permission
 Route::resource('/shopEmployeeType','ShopEmployeeTypeController');
 Route::resource('/shopEmployeeEntry','ShopEmployeeEntryController');
-
 Route::resource('/shopMenuPermission','ShopMenuPermissionController');
 Route::get('/shopEmployeeEntryLists','ShopMenuPermissionController@shopEmployeeEntryLists');
 Route::get('/shopEmployeeTypeName/{shopEmployeeEntryId}','ShopMenuPermissionController@shopEmployeeTypeName');
@@ -100,25 +124,36 @@ Route::get('/shopSubMenuStatusActiveFullAccess/{employeeEntryId}/{employeeTypeId
 Route::get('/shopSubMenuStatusActiveViewAccess/{employeeEntryId}/{employeeTypeId}/{subMenuId}','ShopMenuPermissionController@shopSubMenuStatusActiveViewAccess');
 Route::get('/shopSubMenuStatusActiveAddAccess/{employeeEntryId}/{employeeTypeId}/{subMenuId}','ShopMenuPermissionController@shopSubMenuStatusActiveAddAccess');
 Route::get('/shopSubMenuStatusActiveEditAccess/{employeeEntryId}/{employeeTypeId}/{subMenuId}','ShopMenuPermissionController@shopSubMenuStatusActiveEditAccess');
-
-
-
 Route::resource('/shopproductBrandEntry','ShopProductBrandController');
-Route::get('/productBrandPosition/{shopTypeId}','ShopProductBrandController@productBrandPositions');
-Route::get('/shopproductbrandposition','ShopProductBrandController@brandPositions');
-
+Route::get('/adminProductBrandPosition/{shopTypeId}','ShopProductBrandController@adminProductBrandPosition');
+Route::get('/shopProductBrandPosition','ShopProductBrandController@shopProductBrandPosition');
+Route::get('/shopProductBrandReport','ShopProductBrandController@productBrandReport');
+Route::get('/shopProductBrandReportList/{uniqueId}','ShopProductBrandController@shopProductBrandReportList');
 Route::resource('/shopAssetBrandEntry','ShopAssetBrandController');
+Route::get('/shopAssetBrandReport','ShopAssetBrandController@shopAssetBrandReport');
 
-////////////////////////////// shop admin setting ////////////////////////////////////
+////////////////////////////// Shop Admin Setting ////////////////////////////////////
 Route::resource('/addProductSupplier','ShopAddProductSupplierController');
 Route::get('/productSupplierList','ShopAddProductSupplierController@productSupplierList');
 
 Route::resource('/addAssetSupplier','ShopAddAssetSupplierController');
 Route::get('/assetSupplierList','ShopAddAssetSupplierController@assetSupplierList');
 
+Route::resource('/shopAssetCategory','ShopAssetCategoryController');
+Route::get('/assetCateorySelectList','ShopAssetCategoryController@assetCateorySelectList');
+Route::get('/assetCategoryId/{assetCategoryId}','ShopAssetCategoryController@assetCategoryId');
+Route::get('/assetSubCategoryId/{assetSubCategoryId}','ShopAssetCategoryController@assetSubCategoryId');
+Route::get('/assetThirdCategoryId/{assetThirdCategoryId}','ShopAssetCategoryController@assetThirdCategoryId');
+Route::get('/assetFourCategoryId/{assetFourCategoryId}','ShopAssetCategoryController@assetFourCategoryId');
+Route::get('/assetFiveCategoryId/{assetFiveCategoryId}','ShopAssetCategoryController@assetFiveCategoryId');
+Route::get('/assetSixCategoryId/{assetSixCategoryId}','ShopAssetCategoryController@assetSixCategoryId');
+Route::get('/assetSevenCategoryId/{assetSevenCategoryId}','ShopAssetCategoryController@assetSevenCategoryId');
+
+
 Route::resource('/addBank','ShopAddBankController');
 Route::get('/bankTypeEntryList','ShopAddBankController@bankTypeEntryList');
 Route::get('/bankNameList','ShopAddBankController@bankNameList');
+
 
 // Product Setup
 Route::resource('/shopLoanProviderEntry','ShopLoanProviderEntryController');
@@ -128,6 +163,12 @@ Route::get('/shopIncomeTypeReport','ShopIncomeTypeEntryController@shopIncomeType
 Route::resource('/shopExpenceTypeEntry','ShopExpenceTypeEntryController');
 Route::get('/shopExpenceTypeReport','ShopExpenceTypeEntryController@shopExpenceTypeReport');
 Route::resource('/ShopEmployeeLoginTimeEntry','ShopEmployeeLoginTimeEntryController');
+// Product Price Setup
+Route::resource('/productPriceSetup','ProductPriceSetupController');
+Route::get('/productCategoryLists','ProductPriceSetupController@productCategoryLists');
+Route::get('/productCategoryIdCatch/{categoryId}','ProductPriceSetupController@productCategoryIdCatch');
+Route::get('/productNameIdCatch/{productNameId}','ProductPriceSetupController@productNameIdCatch');
+
 // Shop Report
 Route::get('/shopTypeNameList','ShopReportController@shoptype');
 Route::get('/categoryNameList','ShopReportController@categorydata');
@@ -137,7 +178,16 @@ Route::get('/condition','ShopReportController@condition');
 Route::get('/shopTypeTable','ShopReportController@shopTypeTable');
 Route::get('/adminCategoryListShow/{shopTypeId}/{labelId}','ShopReportController@adminCategoryListShow');
 Route::get('/categoryGlobalCount','ShopReportController@categoryGlobalCount');
+Route::get('/shopAssetCategoryReportOwner','ShopReportController@shopAssetCategoryReportOwner');
+Route::get('/shopAssetCategoryReportOwnerShow/{labelId}','ShopReportController@shopAssetCategoryReportOwnerShow');
+Route::get('/shopAssetCategoryReportGlobal','ShopReportController@shopAssetCategoryReportGlobal');
+Route::get('/shopAssetCategoryReportGlobalShow/{labelId}','ShopReportController@shopAssetCategoryReportGlobalShow');
 
+/////////////////     Setting Route         //////////////////
+//change Password
+Route::resource('/changePassword','PasswordChangeController');
+//profile setting
+Route::resource('/settingsProfile','SettingsController');
 
 
 Route::get('{anypath}','HomeController@index')->where( 'path', '([A-z\d-\/_.]+)? ');

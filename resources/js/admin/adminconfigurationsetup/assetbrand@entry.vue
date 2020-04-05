@@ -58,7 +58,7 @@
                     </div>
                 </td>
                 <td>
-                     <router-link :to="`/assetBrand@entryEdit${brandData.assetBrandEntryId}`" class="btn btn-hover-shine  btn-primary"><i class=" fa fa-edit"></i>Edit</router-link>
+                     <router-link :to="`/adminAssetBrand@entryEdit${brandData.assetBrandEntryId}`" class="btn btn-hover-shine  btn-primary"><i class=" fa fa-edit"></i>Edit</router-link>
                     <button type="button" @click="distroy(brandData.assetBrandEntryId)" class="btn btn-hover-shine btn-danger"><i class=" fa fa-trash"></i>Delete</button>
                 </td>
               </tr>

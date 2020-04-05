@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\AddProductSupplierEntry;
 use App\ShopInformation;
-
+use Carbon\Carbon;
 class ShopAddProductSupplierController extends Controller
 {
 
@@ -54,7 +54,7 @@ class ShopAddProductSupplierController extends Controller
             'productSupplierName' => 'required',
             'productSupplierMail' => 'required|unique:add_product_supplier_entries,productSupplierMail',
             'productSupplierCode' => 'required',
-            'productSupplierPhone' => 'required|numeric',
+            'productSupplierPhone' => 'required|numeric|unique:add_product_supplier_entries,productSupplierPhone',
             'productSupplierAddress' => 'required',
         ]);
 
@@ -72,6 +72,7 @@ class ShopAddProductSupplierController extends Controller
             'productSupplierAddress' => $request->productSupplierAddress,
             'shopTypeId' => $shopTypeId,
             'createBy' => Auth::user()->id,
+            'created_at' => Carbon::now(),
         ]);
 
     }
@@ -94,23 +95,36 @@ class ShopAddProductSupplierController extends Controller
     {
         $this->validate($request, [
             'productSupplierName' => 'required',
+            'productSupplierMail' => 'required',
             'productSupplierCode' => 'required',
-            'productSupplierPhone' => 'required|numeric',
-            'productSupplierMail' => 'required|email|unique:users,email',
+            'productSupplierPhone' => 'required',
             'productSupplierAddress' => 'required',
         ]);
+
         AddProductSupplierEntry::where('productSupplierId', $id)->update([
             'productSupplierName' => $request->productSupplierName,
             'productSupplierCode' => $request->productSupplierCode,
-            'productSupplierPhone' => $request->productSupplierPhone,
             'productSupplierHotLine' => $request->productSupplierHotLine,
-            'productSupplierMail' => $request->productSupplierMail,
             'productSupplierFb' => $request->productSupplierFb,
             'productSupplierWeb' => $request->productSupplierWeb,
             'productSupplierImo' => $request->productSupplierImo,
             'productSupplierAddress' => $request->productSupplierAddress,
             'updateBy' => Auth::user()->id,
         ]);
+        if (AddProductSupplierEntry::where('productSupplierMail',$request->productSupplierMail)->where('productSupplierId','!=',$id)->exists()) {
+            return ['sameMail' => "Change Your Mail"];
+        }
+        elseif (AddProductSupplierEntry::where('productSupplierPhone',$request->productSupplierPhone)->where('productSupplierId','!=',$id)->exists()) {
+              return ['samePhone' => "Change Your Phone Number"];
+        }
+        else {
+          AddProductSupplierEntry::where('productSupplierId', $id)->update([
+              'productSupplierMail' => $request->productSupplierMail,
+              'productSupplierPhone' => $request->productSupplierPhone,
+              'updateBy' => Auth::user()->id,
+          ]);
+        }
+
     }
 
     public function destroy($id)

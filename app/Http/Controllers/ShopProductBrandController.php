@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\ProductBrandEntry;
 use App\ShopInformation;
+use App\ShopTypeEntry;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,17 +21,39 @@ class ShopProductBrandController extends Controller
 
     }
 
+    public function productBrandReport(){
+        $shopTypeId = ShopInformation::where('shopInfoId',Auth::user()->shopId)->first()->shopTypeId;
+        $shoptypeName = ShopTypeEntry::where('shopTypeEntryId',$shopTypeId)->first()->shopTypeName;
 
-    public function productBrandPositions($shopTypeId){
-        $categorycount = ProductBrandEntry::where('shopTypeId',$shopTypeId)->get()->count();
-        $categoryIncrement =  $categorycount +1;
-        return ['categoryIncrement' => $categoryIncrement];
+        $globalProductBrandReport = ProductBrandEntry::where('shopTypeId',$shopTypeId)->where('createBy','!=', Auth::user()->id)->get()->count();
+        $owneProductBrandReport = ProductBrandEntry::where('shopTypeId',$shopTypeId)->where('createBy',Auth::user()->id)->get()->count();
+
+        return ['shoptypeName'=> $shoptypeName,'owneProductBrandReport' => $owneProductBrandReport,'globalProductBrandReport' => $globalProductBrandReport];
+
+    }
+    public function shopProductBrandReportList($uniqueId){
+        $shopTypeId = ShopInformation::where('shopInfoId',Auth::user()->shopId)->first()->shopTypeId;
+
+        if ($uniqueId == 1) {
+            $owneProductBrandReport = ProductBrandEntry::where('shopTypeId',$shopTypeId)->where('createBy',Auth::user()->id)->get();
+            return ['owneProductBrandReport' => $owneProductBrandReport];
+        }
+        if ($uniqueId == 2){
+           $globalProductBrandReport = ProductBrandEntry::where('shopTypeId',$shopTypeId)->where('createBy','!=', Auth::user()->id)->get();
+           return ['globalProductBrandReport' => $globalProductBrandReport];
+        }
+
+
+    }
+
+    public function adminProductBrandPosition($shopTypeId){
+        $productBrandcount = ProductBrandEntry::where('shopTypeId',$shopTypeId)->get()->count();
+        $productBrandIncrement =  $productBrandcount +1;
+        return ['productBrandIncrement' => $productBrandIncrement];
     }
 
 
-
-
-    public function brandPositions()
+    public function shopProductBrandPosition()
     {
         if (isset(Auth::user()->shopId)) {
             $shopTypeId = ShopInformation::where('shopInfoId',Auth::user()->shopId)->first()->shopTypeId;
@@ -52,49 +75,31 @@ class ShopProductBrandController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'productBrandName' => 'required',
+            'productBrandName' => 'required|unique:product_brand_entries,productBrandName',
             'productBrandStatus' => 'required',
         ],
-            [
-                'productBrandName.required' => "Enter Product Brand Name",
-                'productBrandStatus.required' => "Select Product Brand Status",
-            ]);
+        [
+            'productBrandName.required' => "Enter Product Brand Name",
+            'productBrandStatus.required' => "Select Product Brand Status",
+        ]);
 
-        if (Auth::user()->shopId == "") {
-              if (ProductBrandEntry::where('shopTypeId',$request->shopTypeId)->where('productBrandName', $request->productBrandName)->exists()) {
-                  return ['changeProductBrandName' => 'Change Product Brand Name'];
-                  }
-              else {
-                    ProductBrandEntry::insert([
-                        'productBrandName' => $request->productBrandName,
-                        'productBrandStatus' => $request->productBrandStatus,
-                        'createByType' => Auth::user()->id,
-                        'shopTypeId' => $request->shopTypeId,
-                        'productBrandPosition' => $request->productBrandPosition,
-                        'createBy' => Auth::user()->id,
-                        'created_at' => Carbon::now(),
-                    ]);
-                }
-        }
-        else {
 
-            $shopTypeId = ShopInformation::where('shopInfoId', Auth::user()->shopId)->first()->shopTypeId;
 
-            if (ProductBrandEntry::where('shopTypeId',$shopTypeId)->where('productBrandName', $request->productBrandName)->exists()) {
-                return ['changeProductBrandName' => 'Change Product Brand Name'];
-             }
-            else {
-                    ProductBrandEntry::insert([
-                    'productBrandName' => $request->productBrandName,
-                    'productBrandStatus' => $request->productBrandStatus,
-                    'createByType' => Auth::user()->id,
-                    'shopTypeId' => $shopTypeId,
-                    'productBrandPosition' => $request->productBrandPosition,
-                    'createBy' => Auth::user()->id,
-                    'created_at' => Carbon::now(),
-                ]);
-            }
-        }
+          $ProductBrandEntry = new ProductBrandEntry();
+          $ProductBrandEntry->productBrandName = $request->productBrandName;
+          $ProductBrandEntry->productBrandPosition = $request->productBrandPosition;
+          $ProductBrandEntry->productBrandStatus = $request->productBrandStatus;
+          if (isset(Auth::user()->shopId)) {
+             $shopTypeId = ShopInformation::where('shopInfoId', Auth::user()->shopId)->first()->shopTypeId;
+             $ProductBrandEntry->shopTypeId = $shopTypeId;
+          }
+          else {
+            $ProductBrandEntry->shopTypeId = $request->shopTypeId;
+          }
+          $ProductBrandEntry->createBy = Auth::user()->id;
+          $ProductBrandEntry->created_at = Carbon::now();
+          $ProductBrandEntry->save();
+
     }
 
 
@@ -126,13 +131,13 @@ class ShopProductBrandController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'productBrandName' => 'required',
+            'productBrandName' => 'required|unique:product_brand_entries,productBrandName',
             'productBrandStatus' => 'required',
         ],
-            [
-                'productBrandName.required' => "Enter Product Brand Name",
-                'productBrandStatus.required' => "Select Product Brand Status",
-            ]);
+        [
+            'productBrandName.required' => "Enter Product Brand Name",
+            'productBrandStatus.required' => "Select Product Brand Status",
+        ]);
 
         ProductBrandEntry::where('productBrandEntryId', $id)->update([
             'productBrandName' => $request->productBrandName,

@@ -2,7 +2,7 @@
     <span>
       <div class="card">
             <div class="card-header" style="background:rgba(221, 221, 221, 0.20);border:1px solid rgba(0, 0, 0, 0.05)">
-                 <h3 style="color:black">Update Product Brand Entry</h3>
+                 <h3 style="color:black">Update Product Brand</h3>
             </div>
             <div class="supplier-entry py-4 px-2">
                 <div class="col-lg-7 px-lg-5 col-sm-8 offset-sm-2 col-12  supplier-border">
@@ -16,8 +16,7 @@
 
               <div class="form-group">
                  <label>Product Brand Status</label>
-                 <select v-model="form.productBrandStatus" name="productBrandStatus"
-                         :class="{ 'is-invalid': form.errors.has('productBrandStatus') }" class="form-control">
+                 <select v-model="form.productBrandStatus" name="productBrandStatus" :class="{ 'is-invalid': form.errors.has('productBrandStatus') }" class="form-control">
                    <option value="">Select One</option>
                    <option value="1">Publish</option>
                    <option value="0">Unpublish</option>

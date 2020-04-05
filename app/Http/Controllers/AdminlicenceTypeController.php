@@ -16,7 +16,7 @@ class AdminlicenceTypeController extends Controller
      */
     public function index()
     {
-      $AdminlicenceType = AdminlicenceType::orderBy('licenceTypesId','desc')->get();
+      $AdminlicenceType = AdminlicenceType::orderBy('licenceTypesId','desc')->paginate(20);
       return ['AdminlicenceType' => $AdminlicenceType];
     }
 

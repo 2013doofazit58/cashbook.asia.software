@@ -6,6 +6,7 @@ use App\ShopAddAssetSupplierEntry;
 use App\ShopInformation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class ShopAddAssetSupplierController extends Controller
 {
@@ -51,7 +52,7 @@ class ShopAddAssetSupplierController extends Controller
         $this->validate($request, [
             'assetSupplierName' => 'required',
             'assetSupplierMail' => 'required|unique:shop_add_asset_supplier_entries,assetSupplierMail',
-            'assetSupplierPhone' => 'required|numeric',
+            'assetSupplierPhone' => 'required|numeric|unique:shop_add_asset_supplier_entries,assetSupplierPhone',
             'assetSupplierAddress' => 'required',
         ]);
 
@@ -70,6 +71,7 @@ class ShopAddAssetSupplierController extends Controller
         $assetSupplierData->assetSupplierAddress = $request->assetSupplierAddress;
         $assetSupplierData->shopTypeId = $shopTypeId;
         $assetSupplierData->createBy = Auth::user()->id;
+        $assetSupplierData->created_at = Carbon::now();
         $assetSupplierData->save();
     }
 
@@ -82,7 +84,7 @@ class ShopAddAssetSupplierController extends Controller
 
     public function edit($id)
     {
-        $data=ShopAddAssetSupplierEntry::where('assetSupplierId',$id)->first();
+        $data = ShopAddAssetSupplierEntry::where('assetSupplierId',$id)->first();
         return ['data'=>$data];
     }
 
@@ -90,22 +92,36 @@ class ShopAddAssetSupplierController extends Controller
     {
         $this->validate($request, [
             'assetSupplierName' => 'required',
-            'assetSupplierCode' => 'required',
-            'assetSupplierPhone' => 'required|numeric',
+            'assetSupplierMail' => 'required',
+            'assetSupplierPhone' => 'required',
             'assetSupplierAddress' => 'required',
         ]);
+
         ShopAddAssetSupplierEntry::where('assetSupplierId', $id)->update([
             'assetSupplierName' => $request->assetSupplierName,
             'assetSupplierCode' => $request->assetSupplierCode,
-            'assetSupplierPhone' => $request->assetSupplierPhone,
             'assetSupplierHotLine' => $request->assetSupplierHotLine,
-            'assetSupplierMail' => $request->assetSupplierMail,
             'assetSupplierFb' => $request->assetSupplierFb,
             'assetSupplierWeb' => $request->assetSupplierWeb,
             'assetSupplierImo' => $request->assetSupplierImo,
             'assetSupplierAddress' => $request->assetSupplierAddress,
             'updateBy' => Auth::user()->id,
         ]);
+
+        if (ShopAddAssetSupplierEntry::where('assetSupplierPhone',$request->assetSupplierPhone)->where('assetSupplierId','!=',$id)->exists()) {
+           return ['samePhone' => "Change Your Phone Number"];
+        }
+        elseif (ShopAddAssetSupplierEntry::where('assetSupplierMail',$request->assetSupplierMail)->where('assetSupplierId','!=',$id)->exists()) {
+           return ['sameMail' => "Change Your Mail"];
+        }
+        else {
+          ShopAddAssetSupplierEntry::where('assetSupplierId', $id)->update([
+              'assetSupplierPhone' => $request->assetSupplierPhone,
+              'assetSupplierMail' => $request->assetSupplierMail,
+              'updateBy' => Auth::user()->id,
+          ]);
+        }
+
     }
 
     public function destroy($id)

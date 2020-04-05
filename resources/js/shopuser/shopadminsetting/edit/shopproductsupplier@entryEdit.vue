@@ -1,11 +1,8 @@
-
-<!--    productSupplierId	productSupplierName	productSupplierCode	productSupplierPhone	productSupplierHotLine	productSupplierMail	productSupplierFb	productSupplierWeb	productSupplierImo	productSupplierAddress	created_at	updated_at-->
-
 <template id="">
   <span>
     <div class="card">
       <div class="card-header" style="background:rgba(221, 221, 221, 0.20);border:1px solid rgba(0, 0, 0, 0.05)">
-        <h3 style="color:black">Add Product Supplier Entry</h3>
+        <h3 style="color:black">Update Product Supplier</h3>
       </div>
       <div class="supplier-entry py-4 px-2">
         <div class="col-lg-7 px-lg-5 col-sm-8 offset-sm-2 col-12  supplier-border">
@@ -19,10 +16,9 @@
 
                <div class="form-group">
                   <label> Product Supplier Code</label>
-                  <input v-model="form.productSupplierCode" type="text" name="uniteEntryName" :class="{ 'is-invalid': form.errors.has('productSupplierCode') }" placeholder="Product Supplier Code" class="form-control">
+                  <input disabled v-model="form.productSupplierCode" type="text" name="uniteEntryName" :class="{ 'is-invalid': form.errors.has('productSupplierCode') }" placeholder="Product Supplier Code" class="form-control">
                   <has-error :form="form" field="productSupplierCode"></has-error>
               </div>
-
 
                <div class="form-group">
                   <label> Product Supplier Phone Number</label>
@@ -55,7 +51,7 @@
               </div>
 
 
-                 <div class="form-group">
+               <div class="form-group">
                   <label> Product Supplier Imo</label>
                   <input v-model="form.productSupplierImo" type="text" name="productSupplierImo" :class="{ 'is-invalid': form.errors.has('productSupplierImo') }" placeholder="Product Supplier Imo..." class="form-control">
                   <has-error :form="form" field="productSupplierImo"></has-error>
@@ -68,7 +64,7 @@
               </div>
 
              <div class="text-right pt-3">
-               <button type="submit" class="mr-2 btn-pill btn-hover-shine btn btn-primary">Submit</button>
+               <button type="submit" class="mr-2 btn-pill btn-hover-shine btn btn-primary">Update</button>
              </div>
           </form>
         </div>
@@ -92,7 +88,7 @@
                     productSupplierImo: '',
                     productSupplierAddress: '',
                 }),
-                productSupplierAllDatas: [],
+                productSupplierAllDatas: {},
             }
         },
         mounted(){
@@ -109,15 +105,28 @@
             },
 
             addProductSupplierUpdate(){
-                this.form.put('/addProductSupplier/'+this.$route.params.productSupplierId)
-                    .then(res=>{
+                this.form.put('/addProductSupplier/'+this.$route.params.productSupplierId).then(res=>{
+                    if (res.data.sameMail) {
+                        Toast.fire({
+                            icon: 'error',
+                            title: 'Change Your Mail'
+                        })
+                    }
+                    else if (res.data.samePhone) {
+                        Toast.fire({
+                            icon: 'error',
+                            title: 'Change Your Phone Number'
+                        })
+                    }
+                    else{
                         Toast.fire({
                             icon: 'success',
-                            title: 'Asset Brand Entry Update Successfully'
+                            title: 'Product Supplier Information  Update Successfully'
                         })
                         this.$router.push('/shopaddproductsupplier@entry')
-                    })
-            }
+                    }
+                })
+            },
 
         }
 

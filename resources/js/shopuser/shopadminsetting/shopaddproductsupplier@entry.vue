@@ -2,7 +2,7 @@
   <span>
     <div class="card">
       <div class="card-header" style="background:rgba(221, 221, 221, 0.20);border:1px solid rgba(0, 0, 0, 0.05)">
-        <h3 style="color:black">Add Product Supplier Entry</h3>
+        <h3 style="color:black">Add Product Supplier</h3>
       </div>
       <div class="supplier-entry py-4 px-2">
         <div class="col-lg-7 px-lg-5 col-sm-8 offset-sm-2 col-12  supplier-border">
@@ -89,6 +89,7 @@
                <th>Supplier Facebook</th>
                <th>Supplier Imo</th>
                <th>Supplier Address</th>
+               <th>Create Date</th>
                <th>Action</th>
              </tr>
             </thead>
@@ -104,6 +105,7 @@
                 <td>{{ productSupplierAllData.productSupplierFb }}</td>
                 <td>{{ productSupplierAllData.productSupplierImo }}</td>
                 <td>{{ productSupplierAllData.productSupplierAddress }}</td>
+                <td>{{ productSupplierAllData.created_at }}</td>
                 <td>
                      <router-link :to="`/shopproductsupplier@entryEdit${productSupplierAllData.productSupplierId}`" class="btn btn-hover-shine  btn-primary"><i class=" fa fa-edit"></i>Edit</router-link>
                      <button type="button" @click="distroy(productSupplierAllData.productSupplierId)" class="btn btn-hover-shine btn-danger"><i class=" fa fa-trash"></i>Delete</button>

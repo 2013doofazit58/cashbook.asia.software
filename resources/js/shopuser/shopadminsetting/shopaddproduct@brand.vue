@@ -2,7 +2,7 @@
   <span>
       <div class="card">
           <div class="card-header" style="background:rgba(221, 221, 221, 0.20);border:1px solid rgba(0, 0, 0, 0.05)">
-             <h3 style="color:black">Product Brand Entry</h3>
+             <h3 style="color:black">Add Product Brand</h3>
           </div>
       <div class="supplier-entry py-4 px-2">
         <div class="col-lg-7 px-lg-5 col-sm-8 offset-sm-2 col-12  supplier-border">
@@ -130,9 +130,8 @@
         mounted() {
             this.ShowDataLists()
             this.shopTypeNameShow();
-            this.adminShopTypeIdSelect();
             this.condition();
-            this.shopProductBrandpositionCount();
+            this.productBrandPosition();
         },
 
         methods: {
@@ -148,10 +147,10 @@
                         this.form.reset()
                         Toast.fire({
                             icon: 'success',
-                            title: 'Product BrandEntry successfully'
+                            title: 'Product Brand Entry Successfully'
                         })
                         this.ShowDataLists()
-                        this.shopProductBrandpositionCount()
+                        this.productBrandPosition()
                     }
                 });
             },
@@ -162,35 +161,29 @@
                 this.shopProductBrandLists = res.data.shopProductBrandList
               })
             },
-
-            changeStatus($productBrandEntryId){
-                axios.get("/shopproductBrandEntry/"+$productBrandEntryId).then(res=>{
-                    Toast.fire({
-                        icon: 'success',
-                        title: 'Product Brand Status Change Successfully'
-                    })
-                    this.ShowDataLists()
-                })
-            },
-
             shopTypeNameShow() {
                 axios.get('/category/create').then(res => {
                     this.shopTypeNames = res.data.shopTypeNames;
                 });
             },
-
-
             adminShopTypeIdSelect(){
-                axios.get('/productBrandPosition/'+this.form.shopTypeId).then(res => {
-                    this.form.productBrandPosition = res.data.categoryIncrement;
+                axios.get('/adminProductBrandPosition/'+this.form.shopTypeId).then(res => {
+                    this.form.productBrandPosition = res.data.productBrandIncrement;
                 });
             },
-
-
-            shopProductBrandpositionCount(){
-                axios.get('/shopproductbrandposition').then(res=>{
+            productBrandPosition(){
+                axios.get('/shopProductBrandPosition').then(res=>{
                     this.form.productBrandPosition = res.data.productBrandIncrement;
                 })
+            },
+            changeStatus(productBrandEntryId){
+              axios.get("/shopproductBrandEntry/"+productBrandEntryId).then(res=>{
+                Toast.fire({
+                  icon: 'success',
+                  title: 'Product Brand Status Change Successfully'
+                })
+                this.ShowDataLists()
+              })
             },
             condition(){
                 axios.get('/condition').then(res =>{

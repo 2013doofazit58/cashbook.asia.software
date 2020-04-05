@@ -129,7 +129,7 @@
                             title: 'Delete Successfully'
                         })
                         this.getData();
-                    })
+                  })
 
             },
 

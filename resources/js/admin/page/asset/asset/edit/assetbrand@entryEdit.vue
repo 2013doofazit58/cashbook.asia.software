@@ -53,19 +53,26 @@
                 axios.get('/shopAssetBrandEntry/'+this.$route.params.assetBrandEntryId+'/edit')
                     .then(res=>{
                         this.form.fill(res.data.ShopAssetdata)
-                        // console.log(res.data.data)
                     })
             },
 
             update(){
                 this.form.put('/shopAssetBrandEntry/'+this.$route.params.assetBrandEntryId)
                     .then(res=>{
-                        Toast.fire({
+                      if (res.data.changeAssetName) {
+                          Toast.fire({
+                            icon: 'error',
+                            title: 'Change Asset Brand  Name'
+                          })
+                      }
+                      else {
+                          Toast.fire({
                             icon: 'success',
-                            title: 'Asset Brand Entry Update Successfully'
-                        })
-                        this.$router.push('/shopaddasset@brand')
-                    })
+                            title: 'Asset Brand  Update Successfully'
+                         })
+                         this.$router.push('/assetbrand@entry')
+                     }
+                 })
             }
         }
     }

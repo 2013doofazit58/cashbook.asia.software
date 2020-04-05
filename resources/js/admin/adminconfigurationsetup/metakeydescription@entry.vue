@@ -54,7 +54,7 @@
              </tr>
             </thead>
             <tbody>
-              <tr v-for="(showData, index) in showDataentry">
+              <tr v-for="(showData, index) in showDataentry.data">
                 <td>{{ index+1 }}</td>
                 <td>{{ showData.metaKey }}</td>
                 <td>{{ showData.metaDescription }}</td>
@@ -74,6 +74,12 @@
             </tbody>
          </table>
        </div>
+       <span class="card_footer">
+         <pagination :data="showDataentry" :limit="limit"  @pagination-change-page="getPaginateList">
+           <span slot="prev-nav">&lt; Previous</span>
+           <span slot="next-nav">Next &gt;</span>
+         </pagination>
+       </span>
      </div>
   </span>
 </template>
@@ -82,20 +88,27 @@
     export default {
         data() {
             return {
-                showDataentry:[],
                 form: new Form({
                     metaKey: '',
                     metaDescription: '',
                     metaStatus: '',
-                })
+                }),
+                showDataentry:{},
             }
+        },
+        props:{
+             limit: {
+               type: Number,
+               default: 2
+           }
         },
         mounted() {
             this.showDataList();
+            this.getPaginateList();
         },
         methods: {
             metaKeyCreate() {
-                this.form.post('adminMetaKeyDescription').then(res => {
+                this.form.post('/adminMetaKeyDescription').then(res => {
                     if (res.data.changeMetakey){
                         Toast.fire({
                             icon: 'error',
@@ -116,6 +129,12 @@
                     axios.get('/adminMetaKeyDescription').then(res => {
                           this.showDataentry = res.data.show
                       })
+                },
+                getPaginateList(page = 1){
+                  axios.get('/adminMetaKeyDescription?page=' + page)
+                  .then(response => {
+                    this.showDataentry = response.data.show;
+                  });
                 },
                 changeStatus($metaKeyId){
                   axios.get("adminMetaKeyDescription/"+$metaKeyId).then(res=>{

@@ -96,7 +96,7 @@
         },
         methods: {
           create() {
-            this.form.post('bankTypeEntry').then(res => {
+            this.form.post('/bankTypeEntry').then(res => {
                   if (res.data.changebankTypeEntryName){
                       Toast.fire({
                           icon: 'error',

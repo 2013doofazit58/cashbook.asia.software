@@ -45,7 +45,7 @@
              </tr>
             </thead>
             <tbody>
-              <tr v-for="(licenceTypeShow, index) in licenceTypeShows">
+              <tr v-for="(licenceTypeShow, index) in licenceTypeShows.data">
                 <td>{{ index+1 }}</td>
                 <td>{{ licenceTypeShow.licenceTypeName	}}</td>
                 <td>
@@ -64,6 +64,12 @@
             </tbody>
          </table>
        </div>
+       <span class="card_footer">
+         <pagination :data="licenceTypeShows" :limit="limit"  @pagination-change-page="getPaginateList">
+           <span slot="prev-nav">&lt; Previous</span>
+           <span slot="next-nav">Next &gt;</span>
+         </pagination>
+       </span>
      </div>
   </span>
 </template>
@@ -78,8 +84,15 @@
                 licenceTypeShows:[],
             }
         },
+        props:{
+             limit: {
+               type: Number,
+               default: 2
+           }
+        },
         mounted(){
           this.licenceTypeShow();
+          this.getPaginateList();
         },
         methods:{
           licnceTypeCreate(){
@@ -104,6 +117,12 @@
             axios.get('/adminLicenceType').then(res =>{
                 this.licenceTypeShows = res.data.AdminlicenceType
             })
+          },
+          getPaginateList(page = 1){
+            axios.get('/adminLicenceType?page=' + page)
+            .then(response => {
+              this.licenceTypeShows = response.data.AdminlicenceType;
+            });
           },
           changeStatus(licenceTypesId){
            axios.get('/adminLicenceType/'+licenceTypesId).then(res =>{

@@ -89,16 +89,15 @@
         },
         methods:{
             expenceTypeCreate(){
-                this.form.post('/shopExpenceTypeEntry').then(res =>{
-                        this.form.reset();
-                        Toast.fire({
-                            icon: 'success',
-                            title: 'Shop Expence Type Save Successfully'
-                        })
-                    this.expenceTypeShow();
-                    })
-                },
-
+              this.form.post('/shopExpenceTypeEntry').then(res =>{
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'Shop Expence Type Save Successfully'
+                  })
+                  this.form.reset();
+                  this.expenceTypeShow();
+                })
+              },
             expenceTypeShow(){
                 axios.get('/shopExpenceTypeEntry').then(res =>{
                     this.ShowData = res.data.show
@@ -107,17 +106,10 @@
 
             getAuthData(){
                 axios.get('/shopExpenceTypeEntry').then(res =>{
-
                     this.ShowData =  res.data.show;
                     this.ShowValues =  res.data.value;
-
-                    // console.log(res.data.show)
-                    // console.log(res.data.value)
                 })
             },
-
-
-
             changeStatus(shopExpenceTypeId){
                 axios.get('/shopExpenceTypeEntry/'+shopExpenceTypeId).then(res =>{
                     Toast.fire({

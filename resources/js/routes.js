@@ -44,6 +44,7 @@ import ShopTypeEntry from './admin/adminconfigurationsetup/shoptype@entry'
 import ShopTypeEntryEdit from './admin/adminconfigurationsetup/edit/shoptype@entryEdit'
 import UniteEntry from './admin/adminconfigurationsetup/unite@entry'
 import UniteEntryEdit from './admin/adminconfigurationsetup/edit/unite@entryEdit'
+import PurchasetypeEntry from './admin/adminconfigurationsetup/purchasetype@entry'
 
 ///////////////        Admin Shop Information
 import ShopAddressLocationList from './admin/shopInformation/shopaddress@locationlist'
@@ -94,9 +95,19 @@ import LatestPurchaseItem from'./admin/page/purchase/purchase@report/latestpurch
 // Inventory
 import Category from'./admin/page/inventory/inventory/category'
 import CategoryEdit from'./admin/page/inventory/inventory/edit/CategoryEdit'
-import ProductCode from'./admin/page/inventory/inventory/product@code'
+import ProductName from'./admin/page/inventory/inventory/product@name'
 // Inventory Report
 import StockReportAmount from'./admin/page/inventory/inventory@report/stockreport@amount'
+import ProductNameWithoutPrice from'./admin/page/inventory/inventory@report/productname@withoutprice'
+import ProductNameWithPrice from'./admin/page/inventory/inventory@report/productname@withprice'
+import ProductDetails from'./admin/page/inventory/inventory@report/product@details'
+import ProductCategoryWithoutPrice from'./admin/page/inventory/inventory@report/productcategory@withoutprice'
+import ProductCategoryWithPrice from'./admin/page/inventory/inventory@report/productcategory@withprice'
+import LowQuantityProductList from'./admin/page/inventory/inventory@report/lowquantityproduct@list'
+import ExpireDateOverProductList from'./admin/page/inventory/inventory@report/expiredateoverproduct@list'
+import ExpireDateSoonProductList from'./admin/page/inventory/inventory@report/expiredatesoonproduct@list'
+
+
 // Inventory Shortage
 import BrandWiseShortage from'./admin/page/inventory/inventory@shortage/brandwise@shortage'
 import BrandWiseStorckeShortage from'./admin/page/inventory/inventory@shortage/brandwisestorcke@shortage'
@@ -116,16 +127,28 @@ import SalaryIncrementEntry from'./admin/page/hrmanagement/hrmanagement/salaryin
 // Asset
 import AssetEntry from'./admin/page/asset/asset/asset@entry'
 import AssetBrandEntry from'./admin/page/asset/asset/assetbrand@entry'
+import AssetBrandEntryEdit from'./admin/page/asset/asset/edit/assetbrand@entryEdit'
 import AssetCategoryEntry from'./admin/page/asset/asset/assetcategory@entry'
 import AssetCodeEntry from'./admin/page/asset/asset/assetcode@entry'
 import AssetSupplierEntry from'./admin/page/asset/asset/assetsupplier@entry'
+import AssetSupplierEntryEdit from'./admin/page/asset/asset/edit/assetsupplier@entryEdit'
 
-// Asset Report
+
+// Asset Code List
 import AssetSupplierList from'./admin/page/asset/assetcode@list/assetsupplier@list'
 import AssetSupplierInfom from'./admin/page/asset/assetcode@list/assetsupplier@information'
 import AssetCategoryList from'./admin/page/asset/assetcode@list/assetcategory@list'
 import AssetDepraciation from'./admin/page/asset/assetcode@list/asset@depraciation'
 import AssetTotlaprice from'./admin/page/asset/assetcode@list/assettotal@price'
+
+// Asset Report
+import AssetBrandReport from'./admin/page/asset/asset@report/assetbrand@report'
+import AssetCategoryReport from'./admin/page/asset/asset@report/assetcategory@report'
+import AssetCategoryOwnerReport from'./admin/page/asset/asset@report/assetcategory@ownerreport'
+import AssetCategoryGlobalReport from'./admin/page/asset/asset@report/assetcategory@globalreport'
+
+
+
 
 ////////////////     Admin Page
 // Admin Setup
@@ -241,28 +264,24 @@ import ShopMenuPermission from'./shopuser/shopInformation/shopmenu@permission'
 import ShopMenuPermissionList from'./shopuser/shopInformation/shopmenu@permissionlist'
 import ShopMenuPermissionEdit from'./shopuser/shopInformation/edit/adminmenu@permission@edit'
 
-//////////////////  Shop Admin Setting
+//////////////////  Shop Admin Setting ////////////////
+// Shop Setting
 import ShopAddCategory from'./shopuser/shopadminsetting/shopadd@category'
 import ShopAddProductBrand from'./shopuser/shopadminsetting/shopaddproduct@brand'
-import ShopAddAssetBrand from'./shopuser/shopadminsetting/shopaddasset@brand'
+
 import ShopAddEmployee from'./shopuser/shopadminsetting/shopadd@employee'
 import ShopAddProductSupplierEntry from'./shopuser/shopadminsetting/shopaddproductsupplier@entry'
 import ShopProductSupplierEntryEdit from'./shopuser/shopadminsetting/edit/shopproductsupplier@entryEdit'
 import ShopProductBrandEntryEdit from'./shopuser/shopadminsetting/edit/shopproductbrand@entryEdit'
-import ShopAddAssetSupplierEntry from'./shopuser/shopadminsetting/shopaddassetsupplier@entry'
-import ShopAddAssetSupplierEntryEdit from'./shopuser/shopadminsetting/edit/shopassetsupplier@entryEdit'
-import ShopAddAssetCategory from'./shopuser/shopadminsetting/shopaddasset@category'
-import ShopAddAsset from'./shopuser/shopadminsetting/shopadd@asset'
 import ShopAddBank from './shopuser/shopadminsetting/shopadd@bank'
 import ShopAddBankEdit from './shopuser/shopadminsetting/edit/shopadd@bankEdit'
 import ShopProductCodeEntry from'./shopuser/productsetup/shopproductcode@entry'
-import ShopSalesPriceSetup from'./shopuser/productsetup/shopsalesprice@setup'
+import ShopProductPriceSetup from'./shopuser/productsetup/shopproductprice@setup'
 import ShopDiscountSetup from'./shopuser/productsetup/shopdiscount@setup'
-import ShopAssetBrandEntryEdit from'./shopuser/shopadminsetting/edit/shopAssetBrand@entryEdit'
 import CategoryReport from'./shopuser/shopreport/category@report'
 import ProductReport from'./shopuser/shopreport/product@report'
 
-
+// Shop Product Setup
 import ShopAddExpenceTypeEntry from './shopuser/productsetup/shopaddexpencetype@entry'
 import ShopAddExpenceTypeEditEntry from './shopuser/productsetup/edit/shopaddexpencetype@Editentry'
 import ShopLoanProviderEntry from './shopuser/productsetup/shoploanprovider@entry'
@@ -274,7 +293,7 @@ import ShopIncomeTypeEntryEdit from './shopuser/productsetup/edit/shopaddincomet
 import ShopEmployeeeLoginTimeSetup from  './shopuser/productsetup/shopemployeelogintime@setup'
 import ShopEmployeeeLoginTimeSetupEdit from './shopuser/productsetup/edit/shopemployeelogintime@setupEdit'
 
-//////   ProductBrandReport
+//////   Shop Report
 import AdminCategoryList from  './shopuser/shopreport/admincategory@list'
 import CategoryOwnerList from  './shopuser/shopreport/category@ownerlist'
 import CategoryGlobalList from  './shopuser/shopreport/category@globallist'
@@ -283,6 +302,7 @@ import ShopAssetSupplierList from'./shopuser/shopreport/assetsupplier@list'
 import IncomeTypeReport from'./shopuser/shopreport/incometype@report'
 import ExpenceTypeReport from'./shopuser/shopreport/expencetype@report'
 import ProductBrandReport from'./shopuser/shopreport/productbrand@report'
+import ProductBrandReportList from'./shopuser/shopreport/productbrand@reportList'
 
 
 
@@ -350,10 +370,6 @@ export const routes = [
         component:AdminMenuPermissionEdit,
     },
 
-
-
-
-
     /////////////////////   End Admin Configuration Menu Route
 
     /////////////////////    Start Admin Configuration Setup Route
@@ -362,7 +378,7 @@ export const routes = [
         component: AdminAssetBrandEntry,
     },
     {
-        path: '/assetBrand@entryEdit:assetBrandEntryId',
+        path: '/adminAssetBrand@entryEdit:assetBrandEntryId',
         component: AdminAssetBrandEntryEdit,
     },
     {
@@ -471,6 +487,10 @@ export const routes = [
     {
         path: '/unite@entryEdit:uniteEntryId',
         component: UniteEntryEdit,
+    },
+    {
+        path: '/purchasetype@entry',
+        component: PurchasetypeEntry,
     },
 
 ////////////////     Sales  Route
@@ -615,15 +635,46 @@ export const routes = [
         component: CategoryEdit,
     },
 
-
     {
-        path:'/productcode@entry',
-        component: ProductCode,
+        path:'/productname@entry',
+        component: ProductName,
     },
     // Inventory Report
     {
         path: '/stockreport@amount',
         component: StockReportAmount,
+    },
+    {
+        path: '/productname@withoutprice',
+        component: ProductNameWithoutPrice,
+    },
+    {
+        path: '/productname@withprice',
+        component: ProductNameWithPrice,
+    },
+    {
+        path: '/product@details',
+        component: ProductDetails,
+    },
+    {
+        path: '/productcategory@withoutprice',
+        component: ProductCategoryWithoutPrice,
+    },
+    {
+        path: '/productcategory@withprice',
+        component: ProductCategoryWithPrice,
+    },
+    {
+        path: '/lowquantityproduct@list',
+        component: LowQuantityProductList,
+    },
+    {
+        path: '/expiredateoverproduct@list',
+        component: ExpireDateOverProductList,
+    },
+    {
+        path: '/expiredatesoonproduct@list',
+        component: ExpireDateSoonProductList,
     },
     // Inventory Shortage
     {
@@ -681,6 +732,11 @@ export const routes = [
         component: AssetBrandEntry,
     },
     {
+        path: '/assetBrand@entryEdit:assetBrandEntryId',
+        component: AssetBrandEntryEdit,
+    },
+
+    {
         path: '/assetcategory@entry',
         component: AssetCategoryEntry,
     },
@@ -692,7 +748,11 @@ export const routes = [
         path: '/assetsupplier@entry',
         component: AssetSupplierEntry,
     },
-    // Asset Report
+    {
+      path: '/assetsupplier@entryEdit:assetSupplierId',
+      component: AssetSupplierEntryEdit,
+    },
+    // Asset Code
     {
         path: '/assetsupplier@list',
         component: AssetSupplierList,
@@ -712,6 +772,23 @@ export const routes = [
     {
         path: '/assettotal@price',
         component: AssetTotlaprice,
+    },
+    // Asset Report
+    {
+        path: '/assetbrand@report',
+        component: AssetBrandReport,
+    },
+    {
+        path: '/assetcategory@report',
+        component: AssetCategoryReport,
+    },
+    {
+        path: '/assetcategory@ownerreport:assetCategorylabelId',
+        component: AssetCategoryOwnerReport,
+    },
+    {
+        path: '/assetcategory@globalreport:assetCategorylabelId',
+        component: AssetCategoryGlobalReport,
     },
 
     ////////////////////////    Admin Route
@@ -1141,11 +1218,6 @@ export const routes = [
     },
 
     {
-        path: '/shopaddasset@brand',
-        component: ShopAddAssetBrand,
-    },
-
-    {
         path: '/shopadd@employee',
         component: ShopAddEmployee,
     },
@@ -1154,30 +1226,6 @@ export const routes = [
         path: '/shopaddproductsupplier@entry',
         component: ShopAddProductSupplierEntry,
     },
-
-    {
-        path: '/shopaddassetsupplier@entry',
-        component: ShopAddAssetSupplierEntry,
-    },
-
-    {
-        path: '/shopassetsupplier@entryEdit:assetSupplierId',
-        component: ShopAddAssetSupplierEntryEdit,
-    },
-
-    {
-        path: '/shopaddasset@category',
-        component: ShopAddAssetCategory,
-    },
-    {
-        path: '/shopadd@asset',
-        component: ShopAddAsset,
-    },
-
-    // {
-    //     path: '/shopproductsupplier@entry',
-    //     component: ShopProductSupplierEntry,
-    // },
 
     {
         path: '/shopproductsupplier@entryEdit:productSupplierId',
@@ -1198,14 +1246,9 @@ export const routes = [
         component: ShopProductCodeEntry,
     },
 
-    // {
-    //     path: '/shopproduct@entry',
-    //     component: ShopProductEntry,
-    // },
-
     {
-        path: '/shopsalesprice@setup',
-        component: ShopSalesPriceSetup,
+        path: '/shopproductprice@setup',
+        component: ShopProductPriceSetup,
     },
     {
         path: '/shopdiscount@setup',
@@ -1262,11 +1305,6 @@ export const routes = [
     },
 
     {
-        path: '/shopAssetBrand@entryEdit:assetBrandEntryId',
-        component: ShopAssetBrandEntryEdit,
-    },
-
-    {
         path: '/category@report',
         component: CategoryReport,
     },
@@ -1307,6 +1345,11 @@ export const routes = [
         path: '/productbrand@report',
         component: ProductBrandReport,
     },
+    {
+        path: '/productbrand@list:uniqueId',
+        component: ProductBrandReportList,
+    },
+
 
 
 ]

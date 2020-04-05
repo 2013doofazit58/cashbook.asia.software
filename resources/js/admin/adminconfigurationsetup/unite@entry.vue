@@ -2,19 +2,19 @@
   <span>
     <div class="card">
       <div class="card-header" style="background:rgba(221, 221, 221, 0.20);border:1px solid rgba(0, 0, 0, 0.05)">
-        <h3 style="color:black">Unite Name Entry</h3>
+        <h3 style="color:black">Unit Name Entry</h3>
       </div>
       <div class="supplier-entry py-4 px-2">
         <div class="col-lg-7 px-lg-5 col-sm-8 offset-sm-2 col-12  supplier-border">
           <form  @submit.prevent="uniteEntryCreate()">
               <div class="form-group">
-                  <label> Unite Name</label>
+                  <label> Unit Name</label>
                   <input v-model="form.uniteEntryName" type="text" name="uniteEntryName" :class="{ 'is-invalid': form.errors.has('uniteEntryName') }" placeholder="Unite Name" class="form-control">
                   <has-error :form="form" field="uniteEntryName"></has-error>
               </div>
 
                 <div class="form-group">
-                 <label>Unite Status</label>
+                 <label>Unit Status</label>
                  <select v-model="form.uniteEntryStatus" name="uniteEntryStatus" :class="{ 'is-invalid': form.errors.has('uniteEntryStatus') }" class="form-control">
                    <option value="">Select One</option>
                    <option value="1">Publish</option>
@@ -33,15 +33,15 @@
 
   <div class="card main-card  element-block-example mt-5">
       <div class="card-header" style="background:rgba(221, 221, 221, 0.20);border:1px solid rgba(0, 0, 0, 0.05)">
-        <h3 style="color:black">Unite Name</h3>
+        <h3 style="color:black">Unit Name</h3>
       </div>
       <div class="table-responsive bg-white">
         <table class="table table-hover table-bordered mb-0">
           <thead>
              <tr style="background:rgba(242, 242, 242, 0.47)">
                <th>SN</th>
-               <th>Unite Name</th>
-               <th>Unite Status</th>
+               <th>Unit Name</th>
+               <th>Unit Status</th>
                <th>Action</th>
              </tr>
             </thead>

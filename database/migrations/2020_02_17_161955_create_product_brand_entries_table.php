@@ -16,10 +16,9 @@ class CreateProductBrandEntriesTable extends Migration
         Schema::create('product_brand_entries', function (Blueprint $table) {
             $table->bigIncrements('productBrandEntryId');
             $table->string('productBrandName');
-            $table->integer('productBrandStatus');
             $table->integer('productBrandPosition');
+            $table->integer('productBrandStatus');
             $table->integer('shopTypeId');
-            $table->integer('createByType');
             $table->integer('createBy');
             $table->integer('updateBy')->nullable();
             $table->timestamps();

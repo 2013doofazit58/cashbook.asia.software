@@ -16,7 +16,7 @@ class AdminMetaKeyDescriptionController extends Controller
      */
     public function index()
     {
-        $show = AdminMetaKeyDescription::orderBy('metaKeyId','desc')->get();
+        $show = AdminMetaKeyDescription::orderBy('metaKeyId','desc')->paginate(20);
         return ['show'=>$show];
     }
 

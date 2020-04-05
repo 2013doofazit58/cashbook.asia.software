@@ -16,8 +16,17 @@ class ShopAssetBrandController extends Controller
      */
     public function index()
     {
-        $data = AssetBrandEntry::where('createBy',Auth::user()->id)->orderBy('assetBrandEntryId','desc')->paginate(20);
-        return  ['shopAssetData' => $data];
+        $assetBrandList = AssetBrandEntry::where('createBy',Auth::user()->id)->orderBy('assetBrandEntryId','desc')->paginate(20);
+        return  ['assetBrandList' => $assetBrandList];
+    }
+
+    public function shopAssetBrandReport()
+    {
+        $assetBrandReportOwner = AssetBrandEntry::where('createBy',Auth::user()->id)->orderBy('assetBrandEntryId','desc')->get();
+        $assetBrandReportGlobal = AssetBrandEntry::where('createBy','!=',Auth::user()->id)->orderBy('assetBrandEntryId','desc')->get();
+
+        return  ['assetBrandReportOwner' => $assetBrandReportOwner, 'assetBrandReportGlobal' => $assetBrandReportGlobal];
+
     }
 
 
@@ -40,7 +49,25 @@ class ShopAssetBrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'assetBrandName' => 'required',
+            'assetBrandStatus' => 'required',
+        ],
+        [
+            'assetBrandName.required' => "Enter Asset Brand Name",
+            'assetBrandStatus.required' => "Select Asset Brand Status",
+        ]);
+
+        if (AssetBrandEntry::where('assetBrandName', $request->assetBrandName)->exists()) {
+            return ['changeAssetBrandName' => 'Change Your  Name'];
+        } else {
+            AssetBrandEntry::insert([
+                'assetBrandName' => $request->assetBrandName,
+                'assetBrandStatus' => $request->assetBrandStatus,
+                'createBy' => Auth::user()->id,
+                'created_at' => Carbon::now(),
+            ]);
+        }
     }
 
     /**
@@ -79,19 +106,21 @@ class ShopAssetBrandController extends Controller
             'assetBrandName' => 'required',
             'assetBrandStatus' => 'required',
         ],
-            [
-                'assetBrandName.required' => "Enter Asset Brand Name",
-                'assetBrandStatus.required' => "Select Asset Brand Status",
-            ]);
-        $data = AssetBrandEntry::where('assetBrandEntryId',$id)->update([
-            'assetBrandName' => $request->assetBrandName,
-            'assetBrandStatus' => $request->assetBrandStatus,
-            'updateBy' => Auth::user()->id,
-            'updated_at' => Carbon::now(),
+        [
+            'assetBrandName.required' => "Enter Asset Brand Name",
+            'assetBrandStatus.required' => "Select Asset Brand Status",
         ]);
-
-
-
+        if (AssetBrandEntry::where('assetBrandName',$request->assetBrandName)->where('assetBrandEntryId','!=',$id)->exists()) {
+            return ['changeAssetName' => "Change Asset Brand Name"];
+        }
+        else {
+            AssetBrandEntry::where('assetBrandEntryId',$id)->update([
+              'assetBrandName' => $request->assetBrandName,
+              'assetBrandStatus' => $request->assetBrandStatus,
+              'updateBy' => Auth::user()->id,
+              'updated_at' => Carbon::now(),
+            ]);
+        }
     }
 
     /**

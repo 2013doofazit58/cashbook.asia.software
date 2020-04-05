@@ -2,7 +2,7 @@
   <span>
      <div class="card main-card  element-block-example">
          <div class="card-header" style="background:rgba(221, 221, 221, 0.20);border:1px solid rgba(0, 0, 0, 0.05)">
-           <h3 style="color:black">Expence Type Report Owner</h3>
+           <h3 style="color:black">Expence Type Report (Owner)</h3>
           </div>
           <div class="table-responsive bg-white">
            <table class="table table-hover table-bordered mb-0">
@@ -38,7 +38,7 @@
       </div>
       <div class="card main-card  element-block-example mt-5">
           <div class="card-header" style="background:rgba(221, 221, 221, 0.20);border:1px solid rgba(0, 0, 0, 0.05)">
-            <h3 style="color:black">Expence Type Report Global</h3>
+            <h3 style="color:black">Expence Type Report (Global)</h3>
            </div>
            <div class="table-responsive bg-white">
             <table class="table table-hover table-bordered mb-0">

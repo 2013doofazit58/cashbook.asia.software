@@ -5,7 +5,7 @@
         <li class="breadcrumb-item"><router-link to="/category@report">Category Report</router-link></li>
       </ol>
     </nav>
-     <div class="card main-card  element-block-example mt-5">
+     <div class="card main-card  element-block-example">
         <div class="card-header" style="background:rgba(221, 221, 221, 0.20);border:1px solid rgba(0, 0, 0, 0.05)">
           <h3 style="color:black">Category List</h3>
         </div>

@@ -1,6 +1,6 @@
 <template>
   <span>
-    <div class="card">
+    <div class="card main-card  element-block-example">
       <div class="card-header" style="background:rgba(221, 221, 221, 0.46);border:1px solid rgba(0, 0, 0, 0.12)">
         <h3 style="color:black">Stock Report Amount</h3>
       </div>

@@ -1,5 +1,11 @@
 require('./bootstrap');
 window.Vue = require('vue');
+// Import Editor
+import CKEditor from '@ckeditor/ckeditor5-vue';
+Vue.use( CKEditor );
+
+// Filter import
+import filter from './filter'
 
 // Import Route
 import VueRouter from 'vue-router'

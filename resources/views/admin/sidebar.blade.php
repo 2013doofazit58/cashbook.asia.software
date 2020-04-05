@@ -209,6 +209,12 @@
                         Add Income Type
                     </router-link>
                 </li>
+                <li class="block-element-btn-example-1">
+                    <router-link to="/purchasetype@entry">
+                        <i class="metismenu-icon"></i>
+                        Purchase Type Entry
+                    </router-link>
+                </li>
 
 
               </ul>
