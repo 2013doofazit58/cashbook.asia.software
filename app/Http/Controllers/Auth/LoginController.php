@@ -39,44 +39,6 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
     // User Id
-    public function login(Request $request)
-   {
-        $input = $request->all();
-
-
-       if (isset($request->adminAccessId)) {
-           $this->validate($request, [
-               'adminAccessId' => 'required',
-               'password' => 'required',
-           ]);
-
-           $adminAccessId = filter_var($request->adminAccessId, FILTER_VALIDATE_EMAIL) ? 'email' : 'adminAccessId';
-           if(auth()->attempt(array($adminAccessId => $input['adminAccessId'], 'password' => $input['password'])))
-           {
-               return redirect()->route('home');
-           }
-
-           else{
-               return redirect()->route('login')->with('error','Something is Wrong');
-           }
-       }
-       else {
-           $this->validate($request, [
-               'shopAccessName' => 'required',
-               'password' => 'required',
-           ]);
-            $shopAccessName = filter_var($request->shopAccessName, FILTER_VALIDATE_EMAIL) ? 'email' : 'shopAccessName';
-            if(auth()->attempt(array($shopAccessName => $input['shopAccessName'], 'password' => $input['password'])))
-            {
-                return redirect()->route('home');
-            }
-
-            else{
-                return redirect('/shop/login')->with('error','Something is Wrong');
-            }
-       }
-
-   }
-
+   
 
 }
