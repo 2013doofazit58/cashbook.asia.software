@@ -63,42 +63,7 @@
                 </router-link>
               </li>
 
-              <li class="block-element-btn-example-1">
-                <router-link to="/admintype@create">
-                  <i class="metismenu-icon"></i>
-                  Admin Type Create
-                </router-link>
-              </li>
-              <li class="block-element-btn-example-1">
-                <router-link to="/adminentry@create">
-                  <i class="metismenu-icon"></i>
-                  Admin Entry Create
-                </router-link>
-              </li>
-              <li class="block-element-btn-example-1">
-                <router-link to="/adminsetup@create">
-                  <i class="metismenu-icon"></i>
-                  Admin Setup Create
-                </router-link>
-              </li>
-
-
-              <li class="block-element-btn-example-1">
-                <router-link to="/adminmenu@permission">
-                  <i class="metismenu-icon"></i>
-                  Admin Menu Permission
-                </router-link>
-              </li>
-
-              <li class="block-element-btn-example-1">
-                <router-link to="/adminmenu@permissionlist">
-                  <i class="metismenu-icon"></i>
-                  Admin Menu Permission List
-                </router-link>
-              </li>
-
-
-
+             
             </ul>
           </li>
 {{--...............................................  Configaration Setup......................................--}}
@@ -133,30 +98,7 @@
                         Bussiness Type Create
                     </router-link>
                 </li>
-                <li class="block-element-btn-example-1">
-                    <router-link to="/commissiontype@entry">
-                        <i class="metismenu-icon"></i>
-                        Commission Type Entry
-                    </router-link>
-                </li>
-                <li class="block-element-btn-example-1">
-                  <router-link to="/adminholiday@entry">
-                    <i class="metismenu-icon"></i>
-                    Holiday Type Entry
-                  </router-link>
-                </li>
-                <li class="block-element-btn-example-1">
-                    <router-link to="/adminholiday@setup">
-                        <i class="metismenu-icon"></i>
-                        Holiday Setup
-                    </router-link>
-                </li>
-                <li class="block-element-btn-example-1">
-                    <router-link to="/jobdepartment@entry">
-                        <i class="metismenu-icon"></i>
-                       Job Department Entry
-                    </router-link>
-                </li>
+         
                 <li class="block-element-btn-example-1">
                     <router-link to="/licencetype@entry">
                         <i class="metismenu-icon"></i>
@@ -253,21 +195,7 @@
                 @endif
                 <{{ ($adminMenuList->adminSubMenuStatus == 1)? "/a" : "/router-link" }}>
 
-                @if ( $adminMenuList->adminSubMenuStatus == 1 )
-                    <ul>
-                      @php
-                        $AdminSubMenuLists = App\AdminSubMenu::where('adminMenuId',$adminMenuList->adminMenuId)->where('adminSubMenueStatus',1)->orderBy('adminSubMenuePosition','asc')->get();
-                      @endphp
-                      @foreach ($AdminSubMenuLists as $AdminSubMenuList)
-                        <li class="block-element-btn-example-1">
-                          <router-link to="/{{ $AdminSubMenuList->adminSubMenuUrl }}">
-                            <i class="metismenu-icon"></i>
-                            {{ $AdminSubMenuList->adminSubMenuName }}
-                          </router-link>
-                        </li>
-                      @endforeach
-                    </ul>
-                  @endif
+              
                 </li>
               @endforeach
             </ul>
