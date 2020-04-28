@@ -24,55 +24,6 @@ import BankTypeEntry from './admin/adminconfigurationsetup/banktype@entry'
 import BankTypeEntryEdit from './admin/adminconfigurationsetup/edit/banktype@entryEdit'
 import BussinessTypeCreate from './admin/adminconfigurationsetup/bussinesstype@create'
 import BussinessTypeEdit from './admin/adminconfigurationsetup/edit/bussinesstype@edit'
-import CommissionTypeEntry from './admin/adminconfigurationsetup/commissiontype@entry'
-import CommissionTypeEntryEdit from './admin/adminconfigurationsetup/edit/commissiontype@entryEdit'
-import AdminHolidaySetup from './admin/adminconfigurationsetup/holiday@setup'
-import AdminHolidaySetupEdit from './admin/adminconfigurationsetup/edit/holidaysetup@edit'
-import AdminHolidayEntry from './admin/adminconfigurationsetup/holiday@type'
-import AdminHolidayTypeEdit from './admin/adminconfigurationsetup/edit/holidaytype@edit'
-import JobDepartmentEntry from './admin/adminconfigurationsetup/jobdepartment@entry'
-import JobDepartmentEntryEdit from './admin/adminconfigurationsetup/edit/jobdepartment@entryEdit'
-import LicenceTypeEntry from './admin/adminconfigurationsetup/licencetype@entry'
-import LicenceTypeEdit from './admin/adminconfigurationsetup/edit/licencetype@edit'
-import MetakeyDescriptionEntry from './admin/adminconfigurationsetup/metakeydescription@entry'
-import MetakeyDescriptionEntryEdit from './admin/adminconfigurationsetup/edit/metakeydescription@entryEdit'
-import ProductBrandEntry from './admin/adminconfigurationsetup/productbrand@entry'
-import ProductBrandEntryEdit from './admin/adminconfigurationsetup/edit/productbrand@entryEdit'
-import ShopCustomerTypeEntry from './admin/adminconfigurationsetup/shopcustomertype@entry'
-import ShopCustomerTypeEntryEdit from './admin/adminconfigurationsetup/edit/shopcustomertype@entryEdit'
-import ShopTypeEntry from './admin/adminconfigurationsetup/shoptype@entry'
-import ShopTypeEntryEdit from './admin/adminconfigurationsetup/edit/shoptype@entryEdit'
-import UniteEntry from './admin/adminconfigurationsetup/unite@entry'
-import UniteEntryEdit from './admin/adminconfigurationsetup/edit/unite@entryEdit'
-import PurchasetypeEntry from './admin/adminconfigurationsetup/purchasetype@entry'
-
-///////////////        Admin Shop Information
-import ShopAddressLocationList from './admin/shopInformation/shopaddress@locationlist'
-import ShopInformationList from './admin/shopInformation/shopinformation@list'
-
-/////////////////////   Sales Page
-// Product Sale
-import ProductSale from'./admin/page/sales/product@sale'
-// Product Report
-import SalesPrice from'./admin/page/sales/product@report/sales@price'
-import DiscountPrice from'./admin/page/sales/product@report/discount@price'
-import DiscountWishPrice from'./admin/page/sales/product@report/discountwish@price'
-import ProductShortage from'./admin/page/sales/product@report/product@shortage'
-import DamageProduct from'./admin/page/sales/product@report/damage@product'
-import DateExpairedProduct from'./admin/page/sales/product@report/dataexpaired@product'
-import DateExpairedNotifcation from'./admin/page/sales/product@report/dataexpaired@notification'
-
-// Sales Report
-import TodayCashSales from'./admin/page/sales/sales@report/todaycash@sales'
-import TodayDueSales from'./admin/page/sales/sales@report/todaydue@sales'
-import TodayCashReceive from'./admin/page/sales/sales@report/todaycash@receive'
-import TodayDiscount from'./admin/page/sales/sales@report/today@discount'
-import TotalDue from'./admin/page/sales/sales@report/total@due'
-import TotalSale from'./admin/page/sales/sales@report/total@sale'
-import TotalReceive from'./admin/page/sales/sales@report/total@receive'
-import TotalDiscount from'./admin/page/sales/sales@report/total@discount'
-import FixedCustomerList from'./admin/page/sales/sales@report/fixedcustomer@list'
-import LocalCustomerList from'./admin/page/sales/sales@report/localcustomer@list'
 
 ////////////////    Purchase Page
 // Purchase Entry
@@ -113,62 +64,6 @@ import BrandWiseShortage from'./admin/page/inventory/inventory@shortage/brandwis
 import BrandWiseStorckeShortage from'./admin/page/inventory/inventory@shortage/brandwisestorcke@shortage'
 import CompanyWiseShortage from'./admin/page/inventory/inventory@shortage/companywise@shortage'
 
-//////////////// HR Management Page
-// HR Management
-import EmployeeEntry from'./admin/page/hrmanagement/hrmanagement/employee@entry'
-import EmployeeSuspendEntry from'./admin/page/hrmanagement/hrmanagement/employeesuspend@entry'
-import GradeEntry from'./admin/page/hrmanagement/hrmanagement/grade@entry'
-import HolidayEntry from'./admin/page/hrmanagement/hrmanagement/holiday@entry'
-import LeaveEntry from'./admin/page/hrmanagement/hrmanagement/leave@entry'
-import JobdepartmentEntry from'./admin/page/hrmanagement/hrmanagement/jobdepartment@entry'
-import SalaryIncrementEntry from'./admin/page/hrmanagement/hrmanagement/salaryincrement@entry'
-
-//////////////// Asset Page
-// Asset
-import AssetEntry from'./admin/page/asset/asset/asset@entry'
-import AssetBrandEntry from'./admin/page/asset/asset/assetbrand@entry'
-import AssetBrandEntryEdit from'./admin/page/asset/asset/edit/assetbrand@entryEdit'
-import AssetCategoryEntry from'./admin/page/asset/asset/assetcategory@entry'
-import AssetCodeEntry from'./admin/page/asset/asset/assetcode@entry'
-import AssetSupplierEntry from'./admin/page/asset/asset/assetsupplier@entry'
-import AssetSupplierEntryEdit from'./admin/page/asset/asset/edit/assetsupplier@entryEdit'
-
-
-// Asset Code List
-import AssetSupplierList from'./admin/page/asset/assetcode@list/assetsupplier@list'
-import AssetSupplierInfom from'./admin/page/asset/assetcode@list/assetsupplier@information'
-import AssetCategoryList from'./admin/page/asset/assetcode@list/assetcategory@list'
-import AssetDepraciation from'./admin/page/asset/assetcode@list/asset@depraciation'
-import AssetTotlaprice from'./admin/page/asset/assetcode@list/assettotal@price'
-
-// Asset Report
-import AssetBrandReport from'./admin/page/asset/asset@report/assetbrand@report'
-import AssetCategoryReport from'./admin/page/asset/asset@report/assetcategory@report'
-import AssetCategoryOwnerReport from'./admin/page/asset/asset@report/assetcategory@ownerreport'
-import AssetCategoryGlobalReport from'./admin/page/asset/asset@report/assetcategory@globalreport'
-
-
-
-
-////////////////     Admin Page
-// Admin Setup
-import AccountingOnlyCompany from'./admin/adminpage/adminsetup/accountingonly@company'
-import CreateBusinessType from'./admin/adminpage/adminsetup/createbusiness@type'
-import CreateClient from'./admin/adminpage/adminsetup/create@client'
-import CreateStaff from'./admin/adminpage/adminsetup/create@staff'
-import CreateMenu from'./admin/adminpage/adminsetup/create@menu'
-import CreateMarketingType from'./admin/adminpage/adminsetup/createmarketing@type'
-import CreateCommission from'./admin/adminpage/adminsetup/create@commission'
-import CreateAdmin from'./admin/adminpage/adminsetup/create@admin'
-import CreateAgent from'./admin/adminpage/adminsetup/create@agent'
-import CreateLianaType from'./admin/adminpage/adminsetup/createliana@type'
-import ProcessShop from'./admin/adminpage/adminsetup/process@shop'
-import SalesTargetCreate from'./admin/adminpage/adminsetup/salestarget@create'
-import CreateclientIp from'./admin/adminpage/adminsetup/createclient@ip'
-import Purchase from'./admin/adminpage/adminsetup/purchase'
-import IpNotice from'./admin/adminpage/adminsetup/ip@notice'
-import Sales from'./admin/adminpage/adminsetup/sales'
-import DeliverySection from'./admin/adminpage/adminsetup/delivery@section'
 import Inventory from'./admin/adminpage/adminsetup/inventory'
 import ClientFollowp from'./admin/adminpage/adminsetup/client@followp'
 import Asset from'./admin/adminpage/adminsetup/asset'
@@ -1022,52 +917,7 @@ export const routes = [
         path: '/suspend@unsuspend@message',
         component: SuspendUnsuspendMessage,
     },
-    // Marketing Admin
-    {
-        path: '/marketing@salermanlist',
-        component: MarketingSalermanList,
-    },
-    {
-        path: '/marketing@salertarget',
-        component: MarketingSalerTarget,
-    },
-    {
-        path: '/marketing@salertargetachieve',
-        component: MarketingAchieve,
-    },
-    {
-        path: '/marketing@inactivelist',
-        component: MarketingInactiveList,
-    },
-    {
-        path: '/marketing@proposedclient',
-        component: MarketingPoposedClient,
-    },
-    {
-        path: '/marketing@proposedfollowp',
-        component: MarketingPoposedFollowp,
-    },
-    {
-        path: '/marketing@message',
-        component: MarketingMessage,
-    },
-    {
-        path: '/marketing@shopentry',
-        component: MarketingShopEntry,
-    },
-    // Saler Man
-    {
-        path: '/salerman@shopentry',
-        component: SalermanShopEntry,
-    },
-    {
-        path: '/salerman@proposershop',
-        component: SalermanProposerShop,
-    },
-    {
-        path: '/salerman@inactivelist',
-        component: SalermanInctiveList,
-    },
+
     {
         path: '/salerman@profile',
         component: SalermanProfile,
@@ -1150,71 +1000,7 @@ export const routes = [
         component:ShopInformationList,
     },
     {
-        path: '/shopaddress@locationlist',
-        component:ShopAddressLocationList,
-    },
 
-    ////////////////     ShopUser  Route
-
-    {
-        path: '/shopemployee@typecreate',
-        component:ShopEmployeeTypeCreate,
-    },
-    {
-        path: '/shopemployee@typeEdit:shopEmployeeTypeId',
-        component:ShopEmployeeTypeEdit,
-    },
-    {
-        path: '/shopmenu@permission',
-        component:ShopMenuPermission,
-    },
-    {
-        path: '/shopmenu@permissionlist',
-        component:ShopMenuPermissionList,
-    },
-    {
-        path: '/adminmenu@permission@edit',
-        component:ShopMenuPermissionEdit,
-    },
-
-
-    ////////////////////////   Setting Route
-    {
-        path: '/helps@support',
-        component: Help,
-    },
-    {
-        path: '/changepassword',
-        component: Password,
-    },
-    {
-        path: '/refer@taka',
-        component: Refer,
-    },
-    {
-        path: '/profile',
-        component: Profile,
-    },
-    {
-        path: '/offer',
-        component: Offer,
-    },
-    {
-        path: '/setting',
-        component: Setting,
-    },
-
-
-
-    /////////////////////// Shop Admin Setting
-    {
-        path: '/shopadd@category',
-        component: ShopAddCategory,
-    },
-
-    {
-        path: '/shopaddproduct@brand',
-        component: ShopAddProductBrand,
     },
 
     {
@@ -1291,65 +1077,6 @@ export const routes = [
     },
 
     {
-        path: '/shopemployeelogintime@setup',
-        component: ShopEmployeeeLoginTimeSetup,
-    },
-    {
-        path: '/shopemployeelogintime@setupEdit:employeeLoginTimeId',
-        component: ShopEmployeeeLoginTimeSetupEdit,
-    },
-
-    {
-        path: '/shopproductbrand@entryEdit:productBrandEntryId',
-        component: ShopProductBrandEntryEdit,
-    },
-
-    {
-        path: '/category@report',
-        component: CategoryReport,
-    },
-
-    {
-      path: '/adminCategory@list:shopType:labelId',
-      component:AdminCategoryList,
-    },
-    {
-      path: '/category@Ownerlist:categorylabelId',
-      component:CategoryOwnerList,
-    },
-    {
-      path: '/category@Globallist:categorylabelId',
-      component:CategoryGlobalList,
-    },
-    {
-        path: '/product@report',
-        component: ProductReport,
-    },
-    {
-        path: '/productsupplier@report',
-        component: ShopProductSupplierList,
-    },
-    {
-        path: '/assetsupplier@report',
-        component: ShopAssetSupplierList,
-    },
-    {
-        path: '/incometype@report',
-        component: IncomeTypeReport,
-    },
-    {
-        path: '/expencetype@report',
-        component: ExpenceTypeReport,
-    },
-    {
-        path: '/productbrand@report',
-        component: ProductBrandReport,
-    },
-    {
-        path: '/productbrand@list:uniqueId',
-        component: ProductBrandReportList,
-    },
-
 
 
 ]
