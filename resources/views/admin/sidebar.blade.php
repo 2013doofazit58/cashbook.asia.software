@@ -32,7 +32,7 @@
 
 
   <div class="scrollbar-sidebar">
-    @if (Auth::user()->role == 1)
+    @if (Auth::user()->role == 2)
       <div class="app-sidebar__inner">
         <ul class="vertical-nav-menu">
           <li class="app-sidebar__heading">Menu Create</li>
@@ -226,7 +226,7 @@
     @endif
 
   {{--------------------------------- User Menu ----------------------------}}
-  @if (Auth::user()->role == 1)
+  @if (Auth::user()->role == 3)
     {{---------------------------------------- Admin Menu ----------------------------------------}}
       @php
        $adminMenuTitleNames = App\AdminMenuTitleName::where('adminMenuTitleStatus',1)->orderBy('adminMenuTitleId','asc')->get();
@@ -274,7 +274,7 @@
           </div>
         @endforeach
 
-    @elseif (Auth::user()->role == 2)
+    @elseif (Auth::user()->role == 1)
         @php
            $menuTitleNames = App\AdminMenuPermission::where('adminId', Auth::user()->adminId)->where('permissionStatus',1)->distinct()->get(['menuTitleId']);
         @endphp
